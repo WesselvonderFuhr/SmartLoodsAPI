@@ -11,7 +11,5 @@ connectDB();
 const sensors = require('./Routes/sensors.js');
 app.use('/sensors', sensors);
 
-app.listen(3000, () => {
-    console.log("api served");
-});
+app.listen(process.env.PORT || 3000);
 
