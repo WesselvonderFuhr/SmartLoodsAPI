@@ -8,6 +8,18 @@ router.get('/', async function (req, res) {
    await Sensor.find({}).sort('-time').exec((err, docs) => { return res.status(200).json(docs[0]); });    
 });
 
+router.get('/data', async function (req, res) {
+    await Sensor.find({}).sort('-time').exec((err, docs) => { 
+        let result = [];
+        for(let i=0;i < 10;i++){
+            if(docs[i] != null){
+                result[i] = docs[i];
+            }
+        }
+        return res.status(200).json(result); 
+    });    
+ });
+
 router.post('/', async function (req, res) {  
 
     if(req.body.name == null || req.body.value == null){
